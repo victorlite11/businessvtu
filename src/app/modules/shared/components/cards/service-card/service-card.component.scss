@@ -1,0 +1,23 @@
+@import "../../../utils/util.colors.scss";
+
+div.service {
+    padding: 1.6em;
+    height: 5em;
+    width: 5em;
+    margin-left: .5em;
+    margin-right: .5em;
+    border-radius: 50%;
+    //border: 1px solid  $blue;
+    box-shadow: 1px 1px 91px rgba(0, 0, 0, 0.144);
+
+    i.icon {
+        color: $blue;
+        font-size: 1.7em;
+        padding: .3em;
+    }
+    p.name {
+        color: gray;
+        font-size: .7em;
+        text-align: center;
+    }
+}

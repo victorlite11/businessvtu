@@ -1,0 +1,7 @@
+<p-dialog [style]="{'width':'98%'}" position="top" [(visible)]="visible" [modal]="true" [closable]="false" >
+    <section class="flex flex-column">
+        <p>{{notification}}</p>
+
+        <a class="justify-self-end align-self-end mt-5" (click)="toggleVisibility()">Close</a>
+    </section>
+</p-dialog>

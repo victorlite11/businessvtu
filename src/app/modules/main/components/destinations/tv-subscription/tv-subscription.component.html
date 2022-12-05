@@ -1,0 +1,57 @@
+<app-header 
+[title]='title' 
+[canMoveBack]='true' 
+[isBalanceHeader]="true"
+></app-header>
+
+<main class="p-3 mt-3 flex flex-column w-full">
+ 
+    <form [formGroup]='rechargeForm' class="p-3 mt-2 flex flex-column w-full shadow-3">
+        <!-- alert -->
+        <app-alert [alive]="alert.alive" [temporary]="alert.temporary" [severity]="alert.severity" [life]="alert.life" [message]="alert.message"></app-alert>
+        <i *ngIf="fetchingVariations" class="pi pi-spin pi-spinner ml-3 align-self-end justify-self-end"></i>  
+
+        <!-- Token -->
+        <section *ngIf="validated" class="fadeindown validation-details animation-duration-500 flex flex-column animation-iteration-1 shadow-3 m-2 p-3">
+            <!-- <span><span>Smart Card No.:</span> <span class="justify-self-end align-self-end">{{validationDetails.content.Customer_ID}}</span></span>            -->
+            <span class="w-full flex align-items-center justify-content-between"><span>Customer Name:</span> <span class="justify-self-end align-self-end">{{validationDetails.Customer_Name}}</span> </span>            
+            <span class="w-full flex align-items-center justify-content-between"><span>Address:</span> <span class="justify-self-end align-self-end">{{validationDetails.Address}}</span> </span> 
+            <!-- <span><span>Due Date:</span> <span class="justify-self-end align-self-end">{{validationDetails.content.DUE_DATE}}</span></span>      
+            <span><span>Status:</span> <span class="justify-self-end align-self-end">{{validationDetails.content.Status}}</span></span> -->
+        </section> 
+
+        
+        <span class="p-float-label mt-5 w-full ">
+            <p-dropdown [style]="{'width':'100%'}" (onChange)="updateVariation()" [options]="tvServices" class="p-inputtext-sm w-full" formControlName='serviceID' optionLabel="name" optionValue='slug'></p-dropdown>
+            <label for="float-input">Select TV Network</label>
+            
+        </span>
+
+        <span class="p-float-label p-input-icon-right mt-5 w-full ">
+            <input id="float-input" formControlName="smartCardNumber" type="text" class="p-inputtext-sm w-full" pInputText> 
+            <label for="float-input">Smart card number</label>
+        </span>   
+
+        <span *ngIf="validated" class="p-float-label p-input-icon-left mt-5 w-full ">
+            <p-inputNumber [style]="{'width':'100%'}" [disabled]="true" formControlName="amount" mode="currency" currency="NGN" class="p-inputtext-sm w-full"></p-inputNumber>
+            <label for="float-input">Amount</label>
+        </span>     
+
+        <span *ngIf="validated" class="p-float-label p-input-icon-right mt-5 w-full ">
+            <p-dropdown (onChange)="updateAmount()" [style]="{'width':'100%'}" [options]="serviceVariations" class="p-inputtext-sm w-full" formControlName='variation_code' optionLabel="name" optionValue='slug'></p-dropdown>
+            <label for="float-input">Select Subscription Plan</label>
+        </span>
+
+        <span *ngIf="validated" class="p-float-label p-input-icon-left mt-5 w-full ">
+            <input [style]="{'width':'100%'}" id="float-input" formControlName="phone" type="text" class="p-inputtext-sm w-full" pInputText> 
+            <i class="pi pi-phone"></i>
+            <label for="float-input">Phone number</label>
+        </span>
+
+        <span class="mt-5 align-self-end flex align-items-center ">
+            <i *ngIf="recharging || validating" class="pi pi-spin pi-spinner mr-3" style="font-size: 1.2rem"></i>
+            <p-button [style]="{'background-color': '#55A3AF', 'outline': '#55A3AF', 'border-color': '#55A3AF'}" label="{{btnText}}" (click)="performAction()"></p-button>
+        </span>
+    </form>
+</main>
+<app-footer></app-footer>

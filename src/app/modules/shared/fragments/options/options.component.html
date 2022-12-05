@@ -1,0 +1,13 @@
+<section class="flex flex-column justify-content-center align-items-center p-3 mt-2">
+    <p class="scalein animation-duration-3000 animation-iteration-1 instruction">Please select a service</p>
+    <section class="options flex flex-wrap justify-content-between mt-6 scalein ">
+
+        <div 
+            *ngFor="let option of options" 
+            (click)="navigate(option.destination)"
+            class="option m-2 border-round shadow-3 p-2 bg-secondary text-center">
+            <p>{{option.name}}</p>
+        </div>
+
+    </section>
+</section>

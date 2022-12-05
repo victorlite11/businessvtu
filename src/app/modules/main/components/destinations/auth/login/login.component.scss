@@ -1,0 +1,40 @@
+@import "../../../../../shared/utils/util.colors.scss";
+
+:root p-avatar-xl {
+    padding: 3em;
+}
+
+main {
+    form {
+        p.signin-text {
+            font-size:  1.5em;
+            margin-top: .3em;
+            color: gray;
+        }
+
+        span.p-float-label:first-child {
+            margin-top: 1em;
+        }
+    }
+}
+
+input {
+    padding: .7em;
+    &::placeholder {
+        font-size: .9em;
+        color: rgba(128, 128, 128, 0.76);
+        font-family: roboto-light;
+    }
+}
+
+button {
+    background-color: $orange;
+    outline: none;
+    border: none;
+    font-size: .9em;
+
+    &:disabled {
+        background-color: rgba(128, 128, 128, 0.856);
+        color: rgba(0, 0, 0, 0.644);
+    }
+}

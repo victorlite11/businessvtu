@@ -1,0 +1,21 @@
+.border {
+    border: 2px solid green;
+    min-width: 12em !important;
+}
+
+p-dropdown, p-inputNumber {
+    width: 100%;
+}
+
+input {
+    padding: .7em;
+}
+
+button {
+    &:disabled {
+        background-color: rgba(128, 128, 128, 0.856) !important;
+        color: rgba(0, 0, 0, 0.644);
+        border: rgba(128, 128, 128, 0.856) !important;
+        outline: rgba(128, 128, 128, 0.856) !important;
+    }
+}

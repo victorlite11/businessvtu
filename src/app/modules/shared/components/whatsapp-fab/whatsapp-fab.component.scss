@@ -1,0 +1,17 @@
+@import "../../utils/util.colors.scss";
+
+button.fab {
+    border: none;
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    box-shadow: 2px 2px 52px rgba(0, 0, 0, 0.144);
+    padding: 1.5em;
+    border-radius: 50%;
+    background-color: $green;
+
+    i.fab-icon {
+        color: white;
+        font-size: 2em;
+    }
+}

@@ -1,0 +1,44 @@
+@import "../../../../shared/utils/util.colors.scss";
+
+main {
+    p.main-title {
+        color: $blue;
+        font-size: .9em;
+    }
+    section.trx-card {
+        background-color: rgba(255, 255, 255, 0.459);
+        section.date-container {
+            p {
+                font-size: .7em;
+                color: rgba(0, 0, 0, 0.822);
+            }
+        }
+        p {
+            font-size: .9em;
+            color: gray
+        }
+
+        p.detail {
+            padding: .3em;
+            span.title {
+                margin-right: .3em;
+            }
+
+            span.value {
+                color: $color_1;
+                font-family: roboto-light;
+            }
+        }
+
+        section.btn-container {
+            button.cee-general-btn-style-preset {
+                padding: .5em   1em;
+                margin: .1em;
+                background-color: $orange;
+                color: rgba(255, 255, 255, 0.884);
+                font-size: .9em;
+                font-family: roboto-light;
+            }
+        }
+    }
+}

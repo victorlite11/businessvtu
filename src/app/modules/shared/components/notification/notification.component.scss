@@ -1,0 +1,16 @@
+@import "../../utils/util.colors.scss";
+
+section {
+    padding: .3em;
+    width: 97%;
+    p {
+        font-size: 1.2em;
+        color: $blue;
+        font-family: roboto-regular;
+    }
+
+    a {
+        margin-bottom: -.9em;
+    }
+
+}

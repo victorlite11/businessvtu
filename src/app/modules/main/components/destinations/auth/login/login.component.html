@@ -1,0 +1,23 @@
+<app-header [canMoveBack]="true"></app-header>
+<main class="p-3 mt-3 flex flex-column w-full">
+    <!-- alert -->
+    <app-alert [alive]="alert.alive" [temporary]="alert.temporary" [severity]="alert.severity" [life]="alert.life" [message]="alert.message"></app-alert>
+        
+    <form [formGroup]="loginForm" class="flex flex-column mt-5 mb-5 shadow-1 p-4 align-items-center">
+        <p-avatar icon="pi pi-user" size="xlarge" shape="circle" [style]="{color: '#55A3AF'}"></p-avatar>
+        <p class="signin-text mb-5">Please, Sign in</p>
+        
+        <span class="p-float-label p-input-icon-left mt-2 shadow-1 w-full">
+            <i class="pi pi-phone"></i>
+            <input placeholder="Mobile Number" id="phone" class="p-inputtext w-full" formControlName="phone" type="text" pInputText />
+        </span>
+
+        <span class="p-float-label p-input-icon-left mt-3 shadow-1 w-full">
+            <i class="pi pi-key"></i>
+            <input placeholder="Password" id="password" class="p-inputtext w-full" formControlName="password" type="password" pInputText />
+        </span>
+
+        <button label="Sign in" [disabled]="loginForm.invalid" class="mt-5 align-self-end p-button-raised" (click)="login()"  pButton></button>
+    </form>
+</main>
+<app-footer></app-footer>

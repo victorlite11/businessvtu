@@ -1,0 +1,51 @@
+<app-notification [notification]="notification.body" [visible]="notificationVisibility"></app-notification>
+
+<app-header 
+[isProfileHeader]="true" 
+[isAdmin]="isAdmin" 
+[fullname]="user.info.fullname || admin.info.fullname" 
+[iconLabel]="user.info.fullname[0] || admin.info.fullname[0]"></app-header>
+<p-toast></p-toast>
+<main class="p-3 mt-3 flex flex-column w-full">
+    <!-- alert -->
+    <app-alert [alive]="alert.alive" [temporary]="alert.temporary" [severity]="alert.severity" [life]="alert.life" [message]="alert.message"></app-alert>
+        
+    <p class="mb-2 available-services" *ngIf="isAdmin">Menu</p>
+    <!-- Admin Section -->
+    <section class="grid grid-nogutter" *ngIf="isAdmin">
+        <div class="col-4 service" *ngFor="let menu of CEEAdminMenus" (click)="navigate('dashboard/'+menu.dest)">
+            <i class="pi pi-{{menu.icon}}"></i>
+            <p>{{menu.title}}</p>
+        </div>
+    </section>
+
+    <!-- Non-Admin Section -->
+    <p class="mb-2 available-services" *ngIf="!isAdmin">Available Services</p>
+    <section class="grid grid-nogutter">
+        <div class="col-4 service" (click)="navigateToService(serviceMenu.dest, serviceMenu.status, {queryParams: {service_category_slug: serviceMenu.slug}})" *ngFor="let serviceMenu of CEEservices">
+            <i class="pi pi-{{serviceMenu.icon}}"></i>
+            <p>{{serviceMenu.name}}</p>
+        </div>
+    </section>
+
+    <section class="flex align-items-center justify-content-between">
+        <p class="mb-2 mt-2 available-services">My Transactions</p>
+        <button class="cee-general-btn-style-preset show-all-btn" (click)="showAllTrxs()">Show all</button>
+    </section>
+
+    <section *ngIf="transactions.length > 0">
+        <section class="trx-card flex flex-column p-2 shadow-1 mb-3" *ngFor="let trx of transactions">
+            <section class="flex align-items-center justify-content-end date-container mb-2"><p><span>{{trx.date}}</span></p></section>
+            <p class="detail flex align-items-center justify-content-between"><span class="title">Service:</span> <span class="value">{{trx.service}}</span></p>
+            <p class="detail flex align-items-center justify-content-between"><span class="title">Amount:</span> <span class="value">N{{trx.amount}}</span></p>
+            <p class="detail flex align-items-center justify-content-between"><span class="title">Recipient:</span> <span class="value">{{trx.recipient}}</span></p>
+        </section>        
+    </section>
+
+    <section *ngIf="transactions.length == 0" class="no-data-container p-3 mt-1 mb-1 flex align-items-center justify-content-center">
+        <p class="no-data-msg p-2">You haven't made any transaction</p>
+    </section>
+
+    <app-contact-details></app-contact-details>
+</main>
+<app-footer></app-footer>

@@ -1,0 +1,59 @@
+<p-toast position="top-left"></p-toast>
+<app-header 
+[title]='title' 
+[canMoveBack]='true' 
+></app-header>
+<app-alert [alive]="alert.alive" [temporary]="alert.temporary" [severity]="alert.severity" [life]="alert.life" [message]="alert.message"></app-alert>
+
+<main class="p-3 mt-3 flex flex-column w-full">
+    <i *ngIf="fetchingNotifications" class="pi pi-spin pi-spinner ml-3 justify-self-end align-self-end"></i>
+    <p *ngIf="!editing && !creating" class="main-title flex align-items-center justify-content-between">All Notifications <i (click)="createNotification()" class="orange-icon pi pi-plus justify-self-end"></i></p>
+        
+    <section *ngIf="notifications.length < 1 && !editing && !creating" class="flex flex-column mt-5 mb-5 align-items-center">
+
+        <section *ngIf="notifications.length < 1" class="flex flex-column align-items-center justify-items-center">
+            <p *ngIf="notifications.length < 1" class="no-reserved-account">No notification has been created</p>
+        </section>
+
+    </section>
+
+    <section class="flex flex-column" *ngIf="notifications.length > 0 && !editing && !creating">
+        <section *ngFor="let notification of notifications"  class="deposit-token-board w-full shadow-2 mb-2">
+            <section class="flex align-self-end justify-self-end p-2 align-items-end justify-content-end">
+                <i class="pi pi-pencil" (click)="editNotification(notification._id!!)"></i>
+                <i class="pi pi-trash ml-2" (click)="deleteNotification(notification._id!!)"></i>
+            </section>
+            <section class="flex flex-column p-2">
+                <p class="title">Content</p>
+                <p class="value mt-1 accountNumber"><span>{{notification.body}}</span></p>
+            </section>
+            <section class="flex align-items-center justify-content-between p-2 align-self-end justify-self-end">
+                <p class="title">Target Page</p>
+                <p class="value">{{notification.target}}</p>
+            </section>
+        </section>
+    </section>
+
+    <section *ngIf="editing || creating">
+        <p class="main-title" *ngIf="creating">Create New Notification</p>
+        <p class="main-title" *ngIf="editing">Edit Notification</p>
+        <section>
+            <section class="p-3 mt-2 flex flex-column w-full shadow-3">
+
+                <span class="p-float-label mt-3 w-full ">
+                    <textarea [rows]="5" [cols]="30" pInputTextarea [autoResize]="true" id="float-input" [(ngModel)]="targetNotification.body" type="text" class="p-inputtext-sm w-full"></textarea>
+                    <label for="float-input">Content</label>
+                </span>
+
+                <span class="p-float-label p-input-icon-right mt-5 w-full ">
+                    <p-dropdown autoWidth="false" [style]="{'width':'100%'}" [options]="notificationTargets" class="p-inputtext-sm w-full" [(ngModel)]="targetNotification.target" optionLabel="name" optionValue='value'></p-dropdown>
+                    <label for="float-input">Target Pages</label>
+                </span>
+                
+                <span class="mt-5 align-self-end flex align-items-center ">
+                    <button label="{{creating ? 'Create Notification' : 'Edit Notification'}}" (click)="process()" [style]="{'background-color': '#55A3AF', 'outline': '#55A3AF', 'border-color': '#55A3AF'}" pButton></button>
+                </span>
+            </section>
+        </section>
+    </section>
+</main>

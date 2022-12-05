@@ -1,0 +1,116 @@
+@import "../../utils/util.colors.scss";
+
+header {
+    background-color: $color_3;
+    background-image: url('../../../../../assets/bgs/annie-spratt-M6e70Ufd4kc-unsplash.jpg');
+    background-size: cover;
+    background-position-y: 1em;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    &.profile-header {
+        min-height: 9em;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        background-color: $color_3;
+        background-image: url('../../../../../assets/bgs/annie-spratt-M6e70Ufd4kc-unsplash.jpg');
+        background-position-y: 11em;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+    &.balance-header {
+        background-color: $color_3;
+        background-image: url('../../../../../assets/bgs/annie-spratt-M6e70Ufd4kc-unsplash.jpg');
+        background-position-y: 13em;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed; 
+    }
+
+    h3 {
+        font-family: raleway-black;
+        color: $color_1;
+        font-size: 1.6em;
+    }
+    min-height: 4.3em;
+
+    i.options-icon {
+        color: $color_1;
+        font-size:  1.6em;
+    }
+
+    i.nav-icon {
+        color: $color_1;
+    }
+}
+
+section.user-detail {
+    section {
+        p.username {
+            font-size: 1.4em;
+            font-family: raleway-black;
+            color: $blue;
+        }
+    }
+
+    section.balance-board {
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.658);
+        margin: 0 .9em;
+        border-radius: .6em;
+        p.title {
+            color: gray;
+            font-size: .9em;
+        }
+
+        p.amount {
+            font-family: roboto-bold;
+            color: $orange;
+            font-size: .9em;
+        }
+
+        button.fund-wallet-btn {
+            background-color: $orange;
+            color: white;
+            padding: .5em .8em;
+            font-size: .9em;
+            margin-right: .9em;
+        }
+
+        i.commission-withdrawal-icon {
+            color: $blue;
+        }
+
+        i.pi-spinner {
+            font-size: 1.2em;
+        }
+
+        button.commission-withdrawal-btn {
+            background-color: $blue;
+            color: white;
+            padding: .5em .8em;
+            font-size: .9em;
+            margin-right: .3em;
+        }
+        
+        button.no-mr {
+            margin-right: 0em;
+        }
+    }
+}
+
+section.wallet-balance-details {
+    p.title {
+        color: gray;
+        font-size: .9em;
+    }
+
+    p.amount {
+        font-family: roboto-bold;
+        color: $orange;
+        font-size: .9em;
+    }
+}

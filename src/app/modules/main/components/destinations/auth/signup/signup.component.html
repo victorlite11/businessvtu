@@ -1,0 +1,35 @@
+<app-header [canMoveBack]="true"></app-header>
+<main class="p-3 mt-3 flex flex-column w-full">
+        <!-- alert -->
+    <app-alert [alive]="alert.alive" [temporary]="alert.temporary" [severity]="alert.severity" [life]="alert.life" [message]="alert.message"></app-alert>
+        
+    <form [formGroup]="signupForm" class="flex flex-column mt-5 mb-5 shadow-1 p-4 align-items-center">
+        <p-avatar icon="pi pi-user" size="xlarge" shape="circle" [style]="{color: '#55A3AF'}"></p-avatar>
+        <p class="signup-text mb-5">Please, provide your information below</p>
+        <p-toast position="top-center"></p-toast>
+        <span class="p-float-label p-input-icon-left mt-5 shadow-1 w-full">
+            <i class="pi pi-user"></i>
+            <input placeholder="Full Name" id="fullName" class="p-inputtext w-full" formControlName="fullname" type="text" pInputText />
+        </span>
+        <span class="p-float-label p-input-icon-left mt-3 shadow-1 w-full">
+            <i class="pi pi-phone"></i>
+            <input placeholder="Mobile Number" id="phone" class="p-inputtext w-full" formControlName="phone" type="text" pInputText />
+        </span>
+        <span class="p-float-label p-input-icon-left mt-3 shadow-1 w-full">
+            <i class="pi pi-envelope"></i>
+            <input placeholder="Email" id="email" class="p-inputtext w-full" formControlName="email" type="email" pInputText />
+        </span>
+        <span class="p-float-label p-input-icon-left mt-3 shadow-1 w-full">
+            <i class="pi pi-key"></i>
+            <input placeholder="Password" id="password" class="p-inputtext w-full" formControlName="password" type="password" pInputText />
+        </span>
+        <span class="p-float-label p-input-icon-left mt-3 shadow-1 w-full">
+            <i class="pi pi-key"></i>
+            <input (change)="confirmPasswordsEquality()" placeholder="Confirm Password" id="confirmPassword" class="p-inputtext w-full" formControlName="confirmPassword" type="password" pInputText />
+        </span>
+
+        <button (click)="signup()" label="Sign up" class="mt-5 align-self-end p-button-raised" [disabled]="signupForm.invalid || !passMatch" pButton></button>
+    </form>
+
+</main>
+<app-footer></app-footer>

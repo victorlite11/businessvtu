@@ -1,0 +1,39 @@
+<p-toast position="top-left"></p-toast>
+<app-header [title]='title' [canMoveBack]='true'></app-header>
+
+<main class="p-3 mt-3 flex flex-column w-full">
+    <p-message severity="info" text="Provide necessary information to proceed" class=""></p-message> 
+    <form [formGroup]='rechargeForm' class="p-3 mt-2 flex flex-column w-full shadow-3">
+        <span class="p-float-label mt-5 w-full ">
+            <p-dropdown (onChange)="updateVariation()" [options]="networkOptions" class="p-inputtext-sm w-full" formControlName='serviceID' optionLabel="name" optionValue='value'></p-dropdown>
+            <label for="float-input">Select Service</label>
+            <i *ngIf="fetchingVariations" class="pi pi-spin pi-spinner ml-3"></i>
+        </span>
+
+        <span class="p-float-label p-input-icon-right mt-5 w-full ">
+            <p-dropdown (onChange)="updateVariationAmount()" [options]="variations" class="p-inputtext-sm w-full" formControlName='variation_code' optionLabel="name" optionValue='variation_code'></p-dropdown>
+            <label for="float-input">Purchase type</label>
+        </span>
+
+        <span class="p-float-label p-input-icon-right mt-5 w-full ">
+            <p-inputNumber [disabled]="true" formControlName="amount" mode="currency" currency="NGN" class="p-inputtext-sm w-full"></p-inputNumber>
+            <label for="float-input">Amount</label>
+        </span>
+
+        <span class="p-float-label p-input-icon-right mt-5 w-full ">
+            <input id="float-input" formControlName="phone" type="text" class="p-inputtext-sm w-full" pInputText> 
+            <i class="pi pi-phone"></i>
+            <label for="float-input">Phone number</label>
+        </span>
+
+        <!-- Token -->
+        <p-message *ngIf="token.length > 0" severity="success" text="Pin: {{token}}" class=" mt-5"></p-message> 
+        
+
+        <span class="mt-5 align-self-end flex align-items-center ">
+            <i *ngIf="recharging" class="pi pi-spin pi-spinner mr-3" style="font-size: 1.2rem"></i>
+            <p-button label="Buy" (click)="recharge()"></p-button>
+        </span>
+    </form>
+</main>
+<app-footer></app-footer>

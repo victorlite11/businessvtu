@@ -1,0 +1,67 @@
+@import "../../../shared/utils/util.colors.scss";
+
+main {
+    min-height: 29em;
+    p.available-services {
+        color: $blue;
+        font-size: .9em;
+    }
+
+    section {
+        button.show-all-btn {
+            padding: .6em 1em;
+            color: $orange;
+        }
+    }
+
+    section.trx-card {
+        background-color: rgba(255, 255, 255, 0.459);
+        section.date-container {
+            p {
+                font-size: .7em;
+                color: rgba(0, 0, 0, 0.822);
+            }
+        }
+        p {
+            font-size: .9em;
+            color: gray
+        }
+
+        p.detail {
+            padding: .3em;
+            span.title {
+                margin-right: .3em;
+            }
+
+            span.value {
+                color: $color_1;
+                font-family: roboto-light;
+            }
+        }
+    }
+
+} 
+
+div.service {
+        min-height: 9em;
+        padding: .9em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        i {
+            font-size: 2em;
+            color: $color_4;
+
+            &:nth-child(2n) {
+                color: $blue;
+            }
+        }
+
+        p {
+            font-size: .9em;
+            text-align: center;
+            margin-top: .9em;
+            color: gray;
+        }
+}

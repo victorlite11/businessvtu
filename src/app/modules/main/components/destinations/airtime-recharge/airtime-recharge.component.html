@@ -1,0 +1,42 @@
+<app-notification [notification]="notification.body" [visible]="notificationVisibility"></app-notification>
+<p-toast position="top-left"></p-toast>
+<app-header 
+[title]='title' 
+[canMoveBack]='true' 
+[isBalanceHeader]="true"
+></app-header>
+
+<main class="p-3 mt-3 flex flex-column w-full">
+    <form [formGroup]='rechargeForm' class="p-3 mt-2 flex flex-column w-full shadow-3">
+        <!-- alert -->
+        <app-alert [alive]="alert.alive" [temporary]="alert.temporary" [severity]="alert.severity" [life]="alert.life" [message]="alert.message"></app-alert>
+        <i *ngIf="fetchingServices" class="pi pi-spin pi-spinner ml-3 justify-self-end align-self-end"></i>
+           
+        <span class="p-float-label p-input-icon-left mt-3 w-full ">
+            <input id="float-input" formControlName="phone" type="text" class="p-inputtext-sm w-full" pInputText> 
+            <i class="pi pi-phone"></i>
+            <label for="float-input">Phone number</label>
+        </span>
+        
+        <span class="p-float-label p-input-icon-right mt-5 w-full ">
+            <p-inputNumber autoWidth="false" [style]="{'width':'100%'}" formControlName="amount" mode="currency" currency="NGN" class="p-inputtext-sm w-full"></p-inputNumber>
+            <label for="float-input">Amount</label>
+        </span>
+
+        <span class="p-float-label p-input-icon-right mt-5 w-full ">
+            <p-dropdown autoWidth="false" (onChange)="getPlans()" [style]="{'width':'100%'}" [options]="airtimeServices" class="p-inputtext-sm w-full" formControlName='serviceID' optionLabel="name" optionValue='slug'></p-dropdown>
+            <label for="float-input">Select Network</label>
+        </span>
+
+        <!-- <span class="p-float-label p-input-icon-right mt-5 w-full "> Only for nearly free
+            <p-dropdown autoWidth="false" (onChange)="updateValidators()" [style]="{'width':'100%'}" [options]="servicePlans" class="p-inputtext-sm w-full" formControlName='planID' optionLabel="plan" optionValue='planId'></p-dropdown>
+            <label for="float-input">Plans</label>
+        </span> -->
+        
+        <span class="mt-5 align-self-end flex align-items-center ">
+            <i *ngIf="recharging" class="pi pi-spin pi-spinner mr-3" style="font-size: 1.2rem"></i>
+            <button label="Recharge" [disabled]="rechargeForm.invalid" (click)="rechargeAirtime()" [style]="{'background-color': '#55A3AF', 'outline': '#55A3AF', 'border-color': '#55A3AF'}" pButton></button>
+        </span>
+    </form>
+</main>
+<app-footer></app-footer>

@@ -1,0 +1,59 @@
+<app-notification [notification]="notification.body" [visible]="notificationVisibility"></app-notification>
+<main>
+    <app-header [isAdmin]="isAdmin"></app-header>
+    <section class="main flex flex-column align-items-center justify-content-start">
+        <section class="welcome-board flex align-items-center justify-content-center flex-column">
+            <p class="welcome ">Wecome to</p>
+            <p class="name ">CLASSYEMPIRE ENTERPRISE</p>
+            <p class="motto ">Your number one enterprise for telecom solutions</p>
+        </section>
+        
+        <section class="buttons-board flex w-100" *ngIf="!isAuthenticated">
+            <button (click)="navigate('auth/login')" class="cee-btn ">Login</button>
+            <button (click)="navigate('auth/signup')" class="cee-btn-outline ">Register</button>
+        </section>
+
+        <section class="buttons-board flex w-100" *ngIf="isAuthenticated">
+            <button (click)="navigate('dashboard')" class="cee-btn-outline ">Dashboard</button>
+        </section>
+    </section>
+
+    <section class="buy-board flex flex-column align-items-center justify-content-center">
+        <p class="title ">- BUY -</p>
+
+        <section class="flex flex-wrap align-items-center justify-content-center ">
+            <app-service-card (click)="navigate(isAuthenticated ? 'dashboard' : 'auth/login')" *ngFor="let service of serviceOptions" [name]="service.name" [icon]="service.icon"></app-service-card>
+        </section>
+       
+    </section>
+
+    <section class="services-cards-container flex flex-column align-items-center ">
+        <p class="title ">Our Services</p>
+
+        <section (click)="navigate('auth/login')" *ngFor="let service of CEEservices" class="service flex align-items-center justify-content-center flex-column ">
+            <i class="pi pi-{{service.icon}} service-icon"></i>
+            <p class="service-title">{{service.title}}</p>
+            <p class="service-description">{{service.description}}</p>
+        </section>
+    </section>
+
+    <section class="statistics-board flex flex-column align-items-center justify-content-center ">
+        <section *ngFor="let statistic of CEEstatistics" class="statistic flex align-items-center justify-content-center align-items-center flex-column ">
+            <i class="pi pi-{{statistic.icon}} statistic-icon"></i>
+            <p class="statistic-figure">{{statistic.figure}}</p>
+            <p class="statistic-title">{{statistic.title}}</p>
+        </section>       
+    </section>
+
+    <section class="launch-board flex flex-column align-items-center justify-content-center ">
+        <p class="">Create your free account today in less than 2 minutes and start enjoying our services</p>
+        
+        <button *ngIf="!isAuthenticated" (click)="navigate('auth/signup')" class="cee-general-btn-style-preset ">Get Started</button>
+        <button *ngIf="isAuthenticated" (click)="navigate('dashboard')" class="cee-general-btn-style-preset ">Dashboard</button>
+    
+    </section>
+
+    <app-contact-details></app-contact-details>
+</main>
+<app-footer></app-footer>
+

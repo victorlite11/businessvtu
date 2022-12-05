@@ -1,0 +1,24 @@
+<p-toast position="top-left"></p-toast>
+<app-header 
+[title]='title' 
+[canMoveBack]='true' 
+></app-header>
+
+<main class="p-3 mt-3 flex flex-column w-full">
+    <section *ngIf="isLoggedIn" class="p-3 settings-fields-container mt-2 flex flex-column w-full">
+        <!-- alert -->
+        <app-alert [alive]="alert.alive" [temporary]="alert.temporary" [severity]="alert.severity" [life]="alert.life" [message]="alert.message"></app-alert>
+        <i *ngIf="fetching" class="pi pi-spin pi-spinner ml-3 justify-self-end align-self-end"></i>
+        <span *ngIf="isAdmin" class="p-float-label p-input-icon-right mt-4 w-full">
+            <input id="float-input" [(ngModel)]="ceeSettings.commissionSetting.datasubCharge" type="text" class="p-inputtext-sm w-full" pInputText> 
+            <i class="pi">N</i>
+            <label for="float-input">Data Subscription Commission</label>
+        </span>
+
+        <span class="mt-5 align-self-end justify-self-end flex align-items-center">
+            <i *ngIf="updating" class="pi pi-spin pi-spinner mr-3" style="font-size: 1.2rem"></i>
+            <button (click)="updateSettings()" label="Save" [style]="{'background-color': '#55A3AF', 'outline': '#55A3AF', 'border-color': '#55A3AF'}" pButton></button>
+        </span>
+    </section>
+</main>
+<app-footer></app-footer>

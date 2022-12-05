@@ -1,0 +1,135 @@
+@import "../../../shared/utils/util.colors.scss";
+
+:root p-avatar-xl {
+    padding: 3em;
+}
+
+main {
+    form {
+        p.signin-text {
+            font-size:  1.5em;
+            margin-top: .3em;
+            color: gray;
+        }
+
+        span.p-float-label:first-child {
+            margin-top: 1em;
+        }
+    }
+
+    section.deposit-token-board {
+        background-color: $blue;
+        padding: .3em;
+        border-radius: .3em;
+        min-height: 5em;
+
+        section.divider {
+            border-bottom: .1em solid rgba(255, 255, 255, 0.377);
+        }
+
+        section.payment-confirmation {
+            * {
+                color: rgba(255, 255, 255, 0.952);
+            }
+
+            p.note {
+                font-size: .7em;
+                text-align: center;
+                color: rgba(255, 255, 255, 0.5);
+            }
+
+
+        }
+        section {
+            button.cee-general-btn-style-preset {
+                padding: .5em   1em;
+                margin: .1em;
+                color: rgba(0, 0, 0, 0.719);
+                font-family: roboto-light;
+                font-size: .9em;
+            }
+            p.title {
+                color: rgba(255, 255, 255, 0.658);
+                font-size: .9em;
+            }
+
+            p.value {
+                color: white;
+                font-size: .9em;
+                font-family: roboto-bold;
+            }
+
+            p.instruction {
+                color: $color_5;
+                text-align: right;
+                font-size: .8em;
+                font-family: roboto-light-italic;
+                align-self: end;
+                justify-self: end;
+            }
+        }
+    }
+}
+
+p.no-reserved-account {
+    color: $orange;
+    text-align: center;
+    font-size:  1.4em;
+    font-family: roboto-light;
+    align-self: end;
+    justify-self: end;
+}
+
+input {
+    padding: .7em;
+    &::placeholder {
+        font-size: .9em;
+        color: rgba(128, 128, 128, 0.76);
+        font-family: roboto-light;
+    }
+}
+
+button {
+    background-color: $blue;
+    outline: none;
+    border: none;
+
+    margin-top: 6em !important;
+    margin-bottom: .9em;
+
+    &:disabled {
+        background-color: rgba(128, 128, 128, 0.856);
+        color: rgba(0, 0, 0, 0.644);
+    }
+}
+
+p.main-title {
+    font-size: 1.6em;
+    margin-bottom: .5em;
+    color: $blue;
+}
+
+p.main-instruction {
+    font-size: .8em;
+    color: gray;
+    font-family: roboto-light-italic;
+}
+
+p.accountNumber {
+font-size:  1.2em !important;
+}
+
+i {
+    font-size: .9em;
+    color: white;
+
+    &.orange-icon {
+        color: $orange;
+        font-size: .9em;
+    }
+}
+
+
+a.new-notification {
+    color: $orange;
+}

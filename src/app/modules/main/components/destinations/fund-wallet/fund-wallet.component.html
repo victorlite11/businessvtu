@@ -1,0 +1,95 @@
+<app-notification [notification]="notification.body" [visible]="notificationVisibility"></app-notification>
+<div class="monnify-sdk-script-container"></div>
+<app-header  [canMoveBack]="true" [title]="'Fund Wallet'"></app-header>
+    <!-- alert -->
+<app-alert [alive]="alert.alive" [temporary]="alert.temporary" [severity]="alert.severity" [life]="alert.life" [message]="alert.message"></app-alert>
+       
+<main class="p-3 mt-3 flex flex-column w-full">
+    <i *ngIf="fetchingReservedAccounts" class="pi pi-spin pi-spinner ml-3 justify-self-end align-self-end"></i>
+
+    <section class="flex flex-column mt-5 mb-5 align-items-center">
+
+        <section *ngIf="reservedAccounts.length < 1 && !fetchingReservedAccounts" class="flex flex-column align-items-center justify-items-center">
+            <p *ngIf="reservedAccounts.length < 1 && !fetchingReservedAccounts" class="no-reserved-account">You currently do not have any Virtual Account</p>
+            <button label="Create Virtual Accounts" class="mt-5 align-self-center create-reserved-acct-btn p-button-raised" (click)="createVirtualAccounts()"  pButton></button>
+            <p *ngIf="reservedAccounts.length < 1 && !fetchingReservedAccounts" class="main-instruction text-center">These virtual accounts will enable you easily fund your wallet automatically</p>
+        </section>
+
+        <section *ngIf="reservedAccounts.length > 0 && !fetchingReservedAccounts">
+            <p class="main-title">Your Virtual Accounts</p>
+            <p class="main-instruction mb-3">Any Amount Transfered to any of the account Numbers below will be used to instantly fund your Wallet automatically <i>Charges Applies</i></p>
+            <section *ngFor="let reservedAccount of reservedAccounts"  class="deposit-token-board w-full shadow-2 mb-2">
+                <section class="flex align-items-center justify-content-between p-2">
+                    <p class="title">Account Number</p>
+                    <p class="value accountNumber"><span>{{reservedAccount.accountNumber}}</span><span><i class="pi pi-copy ml-2" (click)="copy(reservedAccount.accountNumber,'Account number copied')"></i></span></p>
+                </section>
+                <section class="flex align-items-center justify-content-between p-2">
+                    <p class="title">Bank Name</p>
+                    <p class="value">{{reservedAccount.bankName}}</p>
+                </section>
+                <section class="flex align-items-center justify-content-between p-2">
+                    <p class="title">Account Name</p>
+                    <p class="value">{{reservedAccount.accountName}}</p>
+                </section>
+            </section>
+        </section>
+    
+    </section>
+</main>
+<!--   
+<main class="p-3 mt-3 flex flex-column w-full">
+    <p-toast position="top-center"></p-toast>
+    <form *ngIf="!depositToken" [formGroup]="fundingForm" class=" flex flex-column mt-5 mb-5 shadow-1 p-4 align-items-center">
+        <p class="signin-text mb-5">Please enter amount</p>
+        <span class="p-float-label p-input-icon-left mt-2 shadow-1 w-full">
+            <i class="pi intended-icon">N</i>
+            <input placeholder="Amount" id="phone" class="p-inputtext w-full" formControlName="amount" type="number" pInputText />
+        </span>
+
+        <button label="Proceed" [disabled]="fundingForm.invalid" class="mt-5 align-self-end p-button-raised" (click)="payWithMonnify()"  pButton></button>
+    </form>
+
+    <section *ngIf="depositToken" class=" deposit-token-board w-full shadow-2">
+        <section class="flex align-items-center justify-content-between p-2">
+            <p class="title">Account Number</p>
+            <p class="value"><span>{{accountDetails.accountNumber}}</span><span><i class="pi pi-copy ml-2" (click)="copy(accountDetails.accountNumber,'Account number copied')"></i></span></p>
+        </section>
+        <section class="flex align-items-center justify-content-between p-2">
+            <p class="title">Account Name</p>
+            <p class="value">{{accountDetails.accountName}}</p>
+        </section>
+        <section class="flex align-items-center justify-content-between p-2">
+            <p class="title">Bank Name</p>
+            <p class="value">{{accountDetails.bankName}}</p>
+        </section>
+        <section class="flex align-items-end justify-content-end p-2 w-full">
+            <p class="instruction">Deposit/Transfer should be made into this account</p>
+        </section>
+        <section class="divider mt-4"></section>
+        <section class="flex align-items-center justify-content-between p-2 mt-4">
+            <p class="title">Amount</p>
+            <p class="value">N{{depositToken.amount}}</p>
+        </section>
+        <section class="flex align-items-center justify-content-between p-2">
+            <p class="title">Payment Reference</p>
+            <p class="value" (click)="copy(depositToken.token,'Payment reference copied')"><span>{{depositToken.token}}</span><span><i class="pi pi-copy ml-2" (click)="copy(depositToken.token,'Payment reference copied')"></i></span></p>
+        </section>
+        <section class="flex align-items-center justify-content-between p-2">
+            <p class="title">Date created</p>
+            <p class="value">{{depositToken.date}}</p>
+        </section>
+        <section class="flex align-items-end justify-content-end p-2 w-full">
+            <p class="instruction">The deposit/transfer statement must contain the <span>Payment Reference</span> above</p>
+        </section>
+
+        <section class="flex flex-column align-items-center justify-content-center p-2 mt-5 w-full payment-confirmation">
+            <p class="waiting-msg"><i class="pi pi-spinner pi-spin mr-1"></i>Waiting for payment confirmation</p>
+            <p class="note mt-3">Payment confirmation usually takes 5 mins after payment. Please contact us through Whatsapp if your wallet isn't funded within 5 mins - 10 mins after payment</p>
+        </section>
+
+        <section class="flex align-items-cend justify-content-end p-1 mt-3 w-full">
+            <button class="cee-general-btn-style-preset shadow-2" (click)="cancelFunding()">Cancel</button>
+        </section>
+    </section>
+</main> -->
+<app-footer></app-footer>

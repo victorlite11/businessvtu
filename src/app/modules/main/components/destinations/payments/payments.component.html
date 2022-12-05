@@ -1,0 +1,54 @@
+<app-header  [canMoveBack]="true" [title]="'Payments'"></app-header>
+    <!-- alert -->
+    <app-alert [alive]="alert.alive" [temporary]="alert.temporary" [severity]="alert.severity" [life]="alert.life" [message]="alert.message"></app-alert>
+        
+<main class="p-3 mt-3 flex flex-column w-full">
+    <p-tabView (onChange)="handleChange($event)">
+        <p-tabPanel header="Pending Payments">
+
+            <section *ngIf="depositTokens.length > 0">
+                <section class="deposit-token flex flex-column p-2 shadow-1 mb-3" *ngFor="let token of depositTokens">
+                    <section class="flex align-items-center justify-content-end date-container mb-2"><p>{{token.date}}</p></section>
+                    <p class="detail flex align-items-center justify-content-between"><span class="title">Payment Ref:</span> <span class="value">{{token.token}}</span></p>
+                    <p class="detail flex align-items-center justify-content-between"><span class="title">Amount:</span> <span class="value">N{{token.amount}}</span></p>
+                    <p class="detail flex align-items-center justify-content-between"><span class="title">Phone:</span> <span class="value">{{token.phone}}</span></p>
+                    <section class="flex align-items-center justify-content-end mt-1 btn-container">
+                        <button class="cee-general-btn-style-preset delete-btn" (click)="deletePayment({token: token.token})">Delete</button>
+                        <button class="cee-general-btn-style-preset confirm-btn" (click)="confirmPayment({token: token.token})">Confirm</button>
+                    </section>
+                </section>        
+            </section>
+        
+        
+            <section *ngIf="depositTokens.length == 0" class="no-data-container p-3 mt-5 mb-5 flex align-items-center justify-content-center">
+                <p class="no-data-msg p-2 mb-5 mt-5">No Pending Payment</p>
+            </section>
+         </p-tabPanel>
+
+ 
+
+         <!-- Fund customer tab -->
+         <p-tabPanel header="Fund Customer Wallet">
+            <form [formGroup]='customerWalletFundingForm' class="p-3 mt-2 flex flex-column w-full shadow-3">
+                <i *ngIf="fetchingCustomers" class="pi pi-spin pi-spinner ml-3 align-self-end justify-self-end"></i>  
+            
+                <span class="p-float-label mt-5 w-full ">
+                    <p-dropdown [style]="{'width':'100%'}" [options]="customers" class="p-inputtext-sm w-full" formControlName='phone' optionLabel="name" optionValue='phone'></p-dropdown>
+                    <label for="float-input">Select Customer</label>
+                </span>
+                
+                <span *ngIf="customers.length > 0" class="p-float-label p-input-icon-right mt-5 w-full ">
+                    <p-inputNumber [style]="{'width':'100%'}" formControlName="amount" mode="currency" currency="NGN" class="p-inputtext-sm w-full"></p-inputNumber>
+                    <label for="float-input">Amount</label>
+                </span>
+
+                <span *ngIf="customers.length > 0" class="mt-5 align-self-end flex align-items-center ">
+                    <i *ngIf="funding" class="pi pi-spin pi-spinner mr-3" style="font-size: 1.2rem"></i>
+                    <p-button [disabled]="customerWalletFundingForm.invalid" [style]="{'background-color': '#55A3AF', 'outline': '#55A3AF', 'border-color': '#55A3AF'}" label="Fund Wallet" (click)="performAction()"></p-button>
+                </span>
+        
+            </form>
+         </p-tabPanel>
+    </p-tabView>
+</main>
+<app-footer></app-footer>

@@ -1,0 +1,69 @@
+<app-notification [notification]="notification.body" [visible]="notificationVisibility"></app-notification>
+<app-header 
+[title]='title' 
+[canMoveBack]='true' 
+[isBalanceHeader]="true"
+></app-header>
+<main class="p-3 mt-3 flex flex-column w-full">
+    <form [formGroup]='rechargeForm' class="p-3 mt-2 flex flex-column w-full shadow-3">
+        <!-- alert -->
+        <app-alert [alive]="alert.alive" [temporary]="alert.temporary" [severity]="alert.severity" [life]="alert.life" [message]="alert.message"></app-alert>
+        <i *ngIf="fetchingVariations" class="pi pi-spin pi-spinner ml-3 align-self-end justify-self-end"></i>  
+      
+        <!-- Token -->
+        <section *ngIf="validated" class="validation-details flex flex-column shadow-3 m-2 p-2">
+            <!-- <span><span>Metre No.:</span> <span class="justify-self-end align-self-end">{{validationDetails.content.Meter_Number}}</span></span>            -->
+            <span class="w-full flex align-items-center justify-content-between"><span>Customer Name.:</span> <span class="justify-self-end align-self-end">{{validationDetails.Customer_Name}}</span> </span>            
+            <span class="w-full flex align-items-center justify-content-between"><span>Address:</span> <span class="justify-self-end align-self-end">{{validationDetails.Address}}</span> </span> 
+            <span class="w-full flex align-items-center justify-content-between"><span>Customer District:</span> <span class="justify-self-end align-self-end">{{validationDetails.Customer_District}}</span></span> 
+            <span class="w-full flex align-items-center justify-content-between"><span>Customer Arears:</span> <span class="justify-self-end align-self-end">{{validationDetails.Customer_Arrears}}</span></span>
+            <span class="w-full flex align-items-center justify-content-between"><span>Business Unit:</span> <span class="justify-self-end align-self-end">{{validationDetails.Business_Unit}}</span></span>
+            <span class="w-full flex align-items-center justify-content-between"><span>Max. Purchase Amt.:</span> <span class="justify-self-end align-self-end">{{validationDetails.MAX_Purchase_Amount}}</span></span> 
+            <span class="w-full flex align-items-center justify-content-between"><span>Min Purchase Amt.:</span> <span class="justify-self-end align-self-end">{{validationDetails.Min_Purchase_Amount}}</span></span>      
+            <span class="w-full flex align-items-center justify-content-between"><span>Outstanding:</span> <span class="justify-self-end align-self-end">{{validationDetails.Outstanding}}</span></span> 
+        </section> 
+        
+        <span class="p-float-label mt-5 w-full ">
+            <p-dropdown [style]="{'width':'100%'}" (onChange)="updateMetreNumber()" [options]="powerServices" class="p-inputtext-sm w-full" formControlName='serviceID' optionLabel="name" optionValue='slug'></p-dropdown>
+            <label for="float-input">Select Company</label>
+        </span>
+
+        <!-- metre type -->
+        <span class="p-float-label mt-5 w-full ">
+            <p-dropdown [style]="{'width':'100%'}" (onChange)="updateMetreNumber()" [options]="serviceVariations" class="p-inputtext-sm w-full" formControlName='variation_code' optionLabel="name" optionValue='slug'></p-dropdown>
+            <label for="float-input">Select Metre Type</label>
+        </span>
+
+        <span class="p-float-label p-input-icon-right mt-5 w-full ">
+            <input id="float-input" formControlName="billersCode" type="text" class="p-inputtext-sm w-full" pInputText> 
+            <label for="float-input">Enter Metre Number</label>
+        </span>
+
+        <span *ngIf="validated" class="p-float-label p-input-icon-right mt-5 w-full ">
+            <p-inputNumber [style]="{'width':'100%'}" formControlName="amount" mode="currency" currency="NGN" class="p-inputtext-sm w-full"></p-inputNumber>
+            <label for="float-input">Amount</label>
+        </span>
+
+
+        <span [style]="{'width':'100%'}" *ngIf="validated" class="p-float-label p-input-icon-left mt-5 w-full ">
+            <input [style]="{'width':'100%'}" id="float-input" formControlName="phone" type="text" class="p-inputtext-sm w-full" pInputText> 
+            <i class="pi pi-phone"></i>
+            <label for="float-input">Phone number</label>
+        </span>
+
+        <!-- Recharge Tokens -->
+        <p-message *ngIf="rechargeMainToken.length > 0 && rechargeForm.value.variation_code == 'prepaid'" severity="success" text="{{rechargeMainToken}}" class=" mt-5"></p-message> 
+        <p-message *ngIf="rechargeBonusToken.length > 0 && rechargeForm.value.variation_code == 'prepaid'" severity="success" text="Bonus {{rechargeBonusToken}}" class=" mt-5"></p-message> 
+       
+        
+        <!-- alert -->
+        <app-alert [alive]="alert2.alive" [temporary]="alert2.temporary" [severity]="alert2.severity" [life]="alert2.life" [message]="alert2.message"></app-alert>
+                
+        <span class="mt-5 align-self-end flex align-items-center ">
+            <i *ngIf="recharging || validating" class="pi pi-spin pi-spinner mr-3" style="font-size: 1.2rem"></i>
+            <p-button [style]="{'background-color': '#55A3AF', 'outline': '#55A3AF', 'border-color': '#55A3AF'}" label="{{btnText}}" (click)="performAction()"></p-button>
+        </span>
+
+    </form>
+</main>
+<app-footer></app-footer>

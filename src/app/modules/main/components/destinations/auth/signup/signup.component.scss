@@ -1,0 +1,37 @@
+@import "../../../../../shared/utils/util.colors.scss";
+main {
+    form {
+        p.signup-text {
+            font-size: 1.7em;
+            text-align: center;
+            margin-top: .3em;
+            color: gray;
+        }
+
+        span.p-float-label:first-child {
+            margin-top: 1em;
+        }
+    }
+}
+
+input {
+    padding: .7em;
+    font-size: 1em;
+    &::placeholder {
+        font-size: .9em;
+        color: rgba(128, 128, 128, 0.76);
+        font-family: roboto-light;
+    }
+}
+
+button {
+    background-color: $orange;
+    outline: none;
+    border: none;
+    font-size: .9em;
+
+    &:disabled {
+        background-color: rgba(128, 128, 128, 0.856);
+        color: rgba(0, 0, 0, 0.644);
+    }
+}

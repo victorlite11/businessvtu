@@ -1,0 +1,154 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/primeng/resources/themes/saga-green/theme.css';
+@import '../node_modules/primeng/resources/primeng.min.css';
+@import "../node_modules/primeicons/primeicons.css";
+@import "../node_modules/primeflex/primeflex.scss";
+@import "./app/modules/shared/utils/util.colors.scss";
+
+// fonts
+
+@font-face {
+    font-family: roboto-black;
+    src: url("./assets/fonts/Roboto/Roboto-Black.ttf");
+}
+
+@font-face {
+    font-family: roboto-thin;
+    src: url("./assets/fonts/Roboto/Roboto-Thin.ttf");
+}
+
+@font-face {
+    font-family: roboto-thin-italic;
+    src: url("./assets/fonts/Roboto/Roboto-ThinItalic.ttf");
+}
+
+@font-face {
+    font-family: roboto-medium;
+    src: url("./assets/fonts/Roboto/Roboto-Medium.ttf");
+}
+
+@font-face {
+    font-family: roboto-light;
+    src: url("./assets/fonts/Roboto/Roboto-Light.ttf");
+}
+
+@font-face {
+    font-family: roboto-light-italic;
+    src: url("./assets/fonts/Roboto/Roboto-LightItalic.ttf");
+}
+
+@font-face {
+    font-family: roboto-regular;
+    src: url("./assets/fonts/Roboto/Roboto-Regular.ttf");
+}
+@font-face {
+    font-family: roboto-bold;
+    src: url("./assets/fonts/Roboto/Roboto-Bold.ttf");
+}
+
+@font-face {
+    font-family: raleway-light;
+    src: url("./assets/fonts/static/Raleway-Light.ttf");
+}
+
+@font-face {
+    font-family: raleway-regular;
+    src: url("./assets/fonts/static/Raleway-Regular.ttf");
+}
+
+@font-face {
+    font-family: raleway-black;
+    src: url("./assets/fonts/static/Raleway-Black.ttf");
+}
+
+@font-face {
+    font-family: questrial-regular;
+    src: url("./assets/fonts/Questrial/Questrial-Regular.ttf");
+}
+
+@font-face {
+    font-family: yenone-light;
+    src: url("./assets/fonts/Yanone_Kaffeesatz/static/YanoneKaffeesatz-Light.ttf");
+}
+
+@font-face {
+    font-family: exo-light;
+    src: url("./assets/fonts/Exo_2/static/Exo2-Thin.ttf");
+}
+
+@font-face {
+    font-family: exo-black;
+    src: url("./assets/fonts/Exo_2/static/Exo2-Black.ttf");
+}
+
+@font-face {
+    font-family: yenone-regular;
+    src: url("./assets/fonts/Yanone_Kaffeesatz/static/YanoneKaffeesatz-Regular.ttf");
+}
+
+@font-face {
+    font-family: abril-regular;
+    src: url("./assets/fonts/Abril_Fatface/AbrilFatface-Regular.ttf");
+}
+
+
+// color palletes
+$color_secondary: #f55f5f;
+$color_primary: #00923F;
+
+body {
+    background-color: white;
+}
+
+.color-secondary {
+    color:  $color_secondary !important;
+}
+
+.color-primary {
+    color: $color_primary !important;
+}
+
+.bg-secondary {
+    background-color:  $color_secondary !important;
+}
+
+.bg-primary {
+    background-color: $color_primary !important;
+}
+
+* {
+    font-family: roboto-light;
+    padding: 0;
+    margin: 0;
+}
+
+// buttons
+.cee-general-btn-style-preset {
+    padding: .7em 2.9em;
+    border-radius: .5em;
+    margin: .3em;
+    box-shadow: 1px 1px 91px rgba(0, 0, 0, 0.144);
+    border: none;
+    outline: none;
+    font-size: .9em;
+}
+
+button.cee-btn {
+    @extend .cee-general-btn-style-preset;
+    background-color: $color_3;
+    color: $blue;
+}
+
+button.cee-btn-outline {
+    @extend .cee-general-btn-style-preset;
+    background-color: $blue;
+    color: $color_6;
+}
+
+section.no-data-container {
+    p.no-data-msg {
+        font-size: 1.3em;
+        color: $color_6;
+        text-align: center;
+    }
+}

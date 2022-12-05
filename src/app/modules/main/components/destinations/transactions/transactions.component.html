@@ -1,0 +1,22 @@
+<app-header  [canMoveBack]="true" [title]="'Transactions'"></app-header>
+    <!-- alert -->
+    <app-alert [alive]="alert.alive" [temporary]="alert.temporary" [severity]="alert.severity" [life]="alert.life" [message]="alert.message"></app-alert>
+        
+<main class="p-3 mt-3 flex flex-column w-full">
+    <p class="main-title mb-2">{{heading}}</p>
+    <p-toast position="top-center"></p-toast>
+    <section *ngIf="transactions.length > 0">
+        <section class="trx-card flex flex-column p-2 shadow-1 mb-3" *ngFor="let trx of transactions">
+            <section class="flex align-items-center justify-content-end date-container mb-2"><p><span>{{trx.date}}</span></p></section>
+            <p class="detail flex align-items-center justify-content-between"><span class="title">Service:</span> <span class="value">{{trx.service}}</span></p>
+            <p class="detail flex align-items-center justify-content-between"><span class="title">Amount:</span> <span class="value">N{{trx.amount}}</span></p>
+            <p class="detail flex align-items-center justify-content-between"><span class="title">Recipient:</span> <span class="value">{{trx.recipient}}</span></p>
+        </section>        
+    </section>
+
+
+    <section *ngIf="transactions.length == 0" class="no-data-container p-3 mt-5 mb-5 flex align-items-center justify-content-center">
+        <p class="no-data-msg p-2 mb-5 mt-5">No transactions</p>
+    </section>
+</main>
+<app-footer></app-footer>

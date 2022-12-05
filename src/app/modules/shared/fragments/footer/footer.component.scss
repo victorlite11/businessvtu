@@ -1,0 +1,30 @@
+section {
+    width: 100%;
+    background-color: #272729;
+    margin-top: 2em;
+    //min-height: 10em;
+    padding: 1.2em;
+
+    section.navs-container {
+        a {
+            color: rgba(255, 255, 255, 0.842);
+            padding: .9em;
+            padding-top: .2em;
+        }
+    }
+
+     p.copyright {
+         color: rgba(255, 255, 255, 0.712);
+         justify-self: flex-end;
+         font-size: .9em;
+     }
+
+     p.footer-title {
+        font-size:  1.8em;
+        letter-spacing: .3em;
+        font-family: roboto-black;
+        color: rgba(255, 255, 255, 0.267);
+        padding: .6em;
+        text-align: center;
+     }
+}

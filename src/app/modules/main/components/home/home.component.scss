@@ -1,0 +1,176 @@
+@import "../../../shared/utils/util.colors.scss";
+
+main {
+    padding: 0 !important;
+    margin: 0 !important;
+
+    // main section
+    section.main {
+        min-height: 28em;
+        background-color: $color_3;
+        background-image: url('../../../../../assets/bgs/annie-spratt-M6e70Ufd4kc-unsplash.jpg');
+        background-size: cover;
+        background-position-y: 12em;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        padding: .9em;
+        width: 100%;
+
+        section.welcome-board {
+            margin-top: 6em;
+            * {
+                color: #7854AF;
+            }
+            p.name {
+                font-size: 2em;
+                font-family: roboto-black;
+                text-align: center;
+                color: $blue;
+            }
+            p.welcome {
+                font-family: roboto-light;
+                color: rgba(0, 0, 0, 0.76);
+            }
+            p.motto {
+                font-family: raleway-light;
+                text-align: center;
+                font-size: .9em;
+                color: $blue;
+                background-color: rgba(255, 255, 255, 0.658);
+                border-radius: .5em;
+                padding: .6em;
+                
+            }
+        }
+
+        section.buttons-board {
+            margin-top: 2.9em;
+        }
+
+        p.i-want-to-buy {
+            color: white;
+        }
+
+        .services-dropdown {
+            min-width: 95% !important;
+            align-self: center;
+            justify-self: center;
+        }
+    }
+
+    // services cards container
+    section.services-cards-container {
+        margin-top: 1.5em;
+
+        p.title {
+            font-size: 1.4em;
+            font-family: roboto-bold;
+            color: rgba(0, 0, 0, 0.658);
+            letter-spacing: .2em;
+            margin-top: .3em;
+            margin-bottom: .6em;
+            text-align: center;
+            // -webkit-box-reflect: below 0 -webkit-gradient(linear,50% 0,50% 100%,from(transparent),to(white));
+            // -webkit-box-reflect: below 0 -ms-gradient(linear,50% 0,50% 100%,from(transparent),to(white));
+        }
+
+        section.service {
+            box-shadow: 2px 2px 52px rgba(0, 0, 0, 0.144);
+            border-radius: .9em;
+            margin: 1.2em;
+            margin-bottom: .5em !important;
+            margin-top: .2em !important;
+            width: 90%;
+            min-height: 22em;
+            background-color: rgb(248, 248, 248);
+            border: 1px solid $color_3;
+
+            i.service-icon {
+                font-size: 3.5em;
+                color: $color_4;
+                padding: .4em;
+                font-weight:lighter;
+            }
+
+            p.service-title {
+                font-family: roboto-light;
+                margin-bottom: .5em;
+                font-size: 1.2em;
+                color: $color_4;
+            }
+
+            p.service-description {
+                text-align: center;
+                padding: .9em;
+                line-height: 1.5em;
+                font-size: .9em;
+                color: gray;
+            }
+        }
+    }
+
+    section.statistics-board {
+        min-height: 35em;
+        width: 100%;
+        background-color: $blue;
+        margin-top: .9em;
+        section.statistic {
+            margin: 1.1em;
+            margin-bottom: .5em !important;
+            margin-top: .2em !important;
+            min-height: 5em;
+            min-width: 9em;
+            padding: 1.9em;
+            * {
+                color: white;
+            }
+            i.statistic-icon {
+                font-size: 2.8em;
+                font-weight: lighter;
+                color: rgba(255, 255, 255, 0.705);
+                margin-bottom: .3em;
+            }
+
+            p.statistic-title {
+                font-family: roboto-light;
+                font-size: .9em;
+                color: rgba(255, 255, 255, 0.753);
+            }
+
+            p.statistic-figure {
+                font-family: roboto-bold;
+                font-size: 2.3em;
+            }
+        }
+    }
+
+    section.launch-board {
+        padding: .9em;
+        margin-top: .9em;
+        margin-bottom: .9em;
+        p {
+            text-align: center;
+            font-size: 1.2em;
+            font-family: roboto-light;
+            letter-spacing: .1em;
+            line-height: 1.3em;
+            color: gray;
+        }
+
+        button {
+            background-color: $orange;
+            color: white;
+            margin-top: .9em;
+        }
+    }
+
+    section.buy-board {
+        margin-top: 1.2em;
+        p.title {
+            color: $blue;
+            font-family: roboto-black;
+            margin-bottom: .9em;
+            font-size: 1.3em;
+        }
+    }
+}

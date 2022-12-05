@@ -1,0 +1,24 @@
+<app-header [canMoveBack]="true" [title]="'Customers'"></app-header>
+    <!-- alert -->
+    <app-alert [alive]="alert.alive" [temporary]="alert.temporary" [severity]="alert.severity" [life]="alert.life" [message]="alert.message"></app-alert>
+        
+<main class="p-3 mt-3 flex flex-column w-full">
+    <p-toast position="top-center"></p-toast>
+    <p class="main-title mb-2 w-full flex align-items-center justify-content-between"><span>All Customers</span> {{users.length}}</p>
+    <section *ngIf="users.length > 0">
+        <section class="user-card flex flex-column p-2 shadow-1 mb-3" *ngFor="let user of users">
+            <section class="flex align-items-center justify-content-end balance-container mb-2"><p>Wallet Bal: <span>N{{user.wallet.balance}}</span></p></section>
+            <p class="detail flex align-items-center justify-content-between"><span class="title">Full Name:</span> <span class="value">{{user.info.fullname}}</span></p>
+            <p class="detail flex align-items-center justify-content-between"><span class="title">Phone:</span> <span class="value">{{user.info.phone}}</span></p>
+            <p class="detail flex align-items-center justify-content-between"><span class="title">Email:</span> <span class="value">{{user.info.email}}</span></p>
+            <p class="detail flex align-items-center justify-content-between"><span class="title">Total Transactions:</span> <span class="value">{{user.transactions.length}}</span></p>
+            <section class="flex align-items-center justify-content-end mt-1 btn-container"><button class="cee-general-btn-style-preset" (click)="deleteUser({phone: user.info.phone})">Remove Customer</button></section>
+        </section>        
+    </section>
+
+
+    <section *ngIf="users.length == 0" class="no-data-container p-3 mt-5 mb-5 flex align-items-center justify-content-center">
+        <p class="no-data-msg p-2 mb-5 mt-5">No Customers</p>
+    </section>
+</main>
+<app-footer></app-footer>
