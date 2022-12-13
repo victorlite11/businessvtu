@@ -47,19 +47,21 @@
   <section class="services-cards-container flex flex-column align-items-center">
     <p class="title">Our Services</p>
 
-    <section
-      (click)="navigate('auth/login')"
-      *ngFor="let service of CEEservices"
-      class="service flex align-items-center justify-content-center flex-column"
-    >
-      <i class="pi pi-{{ service.icon }} service-icon"></i>
-      <p class="service-title">{{ service.title }}</p>
-      <p class="service-description">{{ service.description }}</p>
-    </section>
+    <div class="grid align-items-center justify-content-center">
+      <div
+        (click)="navigate('auth/login')"
+        *ngFor="let service of CEEservices"
+        class="service flex align-items-center justify-content-center flex-column"
+      >
+        <i class="pi pi-{{ service.icon }} service-icon"></i>
+        <p class="service-title">{{ service.title }}</p>
+        <p class="service-description">{{ service.description }}</p>
+      </div>
+    </div>
   </section>
 
   <section
-    class="statistics-board flex flex-column align-items-center justify-content-center"
+    class="statistics-board grid align-items-center justify-content-center"
   >
     <section
       *ngFor="let statistic of CEEstatistics"
@@ -82,14 +84,14 @@
     <button
       *ngIf="!isAuthenticated"
       (click)="navigate('auth/signup')"
-      class="cee-general-btn-style-preset"
+      class="cee-general-btn-style-preset cursor-pointer"
     >
       Get Started
     </button>
     <button
       *ngIf="isAuthenticated"
       (click)="navigate('dashboard')"
-      class="cee-general-btn-style-preset"
+      class="cee-general-btn-style-preset cursor-pointer"
     >
       Dashboard
     </button>
