@@ -67,13 +67,13 @@ main {
       // -webkit-box-reflect: below 0 -ms-gradient(linear,50% 0,50% 100%,from(transparent),to(white));
     }
 
-    section.service {
+    div.service {
       box-shadow: 2px 2px 52px rgba(0, 0, 0, 0.144);
       border-radius: 0.9em;
       margin: 1.2em;
       margin-bottom: 0.5em !important;
       margin-top: 0.2em !important;
-      width: 90%;
+      width: 24rem;
       min-height: 22em;
       background-color: rgb(248, 248, 248);
       border: 1px solid $color_3;
@@ -103,10 +103,9 @@ main {
   }
 
   section.statistics-board {
-    min-height: 35em;
     width: 100%;
     background-color: $blue;
-    margin-top: 0.9em;
+
     section.statistic {
       margin: 1.1em;
       margin-bottom: 0.5em !important;
@@ -151,7 +150,7 @@ main {
     }
 
     button {
-      background-color: $orange;
+      background-color: $green;
       color: white;
       margin-top: 0.9em;
     }
