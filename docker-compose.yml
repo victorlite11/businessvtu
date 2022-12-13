@@ -4,7 +4,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: ${PWD}/.docker/Dockerfile
+      dockerfile: ${PWD}/.docker/dev/Dockerfile
       target: base
     ports:
       - 3000:4200
