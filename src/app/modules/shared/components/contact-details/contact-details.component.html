@@ -1,4 +1,6 @@
-<section class="keep-in-touch-board flex flex-column">
+<section
+  class="keep-in-touch-board flex flex-column align-items-center justify-content-center"
+>
   <p class="title fadein animation-duration-2000 animation-iteration-1">
     - KEEP IN TOUCH -
   </p>
@@ -10,22 +12,21 @@
     or complaints.
   </p>
 
-  <section
-    *ngFor="let contact of contacts"
-    class="info flex align-items-center"
-  >
-    <i
-      class="pi pi-{{
-        contact.icon
-      }} contact-info-icon fadein animation-duration-2000 animation-iteration-1"
-    ></i>
-    <section class="contact flex flex-column justify-content-center">
-      <p class="name fadein animation-duration-2000 animation-iteration-1">
-        {{ contact.name }}
-      </p>
-      <p class="detail fadein animation-duration-2000 animation-iteration-1">
-        {{ contact.detail }}
-      </p>
-    </section>
-  </section>
+  <div class="grid gap-4 align-items-center justify-content-start">
+    <div *ngFor="let contact of contacts" class="info flex align-items-center">
+      <i
+        class="pi pi-{{
+          contact.icon
+        }} contact-info-icon fadein animation-duration-2000 animation-iteration-1"
+      ></i>
+      <div class="contact flex flex-column justify-content-center">
+        <p class="name fadein animation-duration-2000 animation-iteration-1">
+          {{ contact.name }}
+        </p>
+        <p class="detail fadein animation-duration-2000 animation-iteration-1">
+          {{ contact.detail }}
+        </p>
+      </div>
+    </div>
+  </div>
 </section>
