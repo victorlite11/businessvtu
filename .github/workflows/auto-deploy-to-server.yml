@@ -1,0 +1,32 @@
+name: Deploy to server
+
+on:
+  push:
+    branches:
+      - horlakz/dev
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build Docker images
+        run: |
+          docker build . -f './.docker/prod/Dockerfile' -t businessvtu:${{ github.sha }}
+
+  run:
+    runs-on: self-hosted
+
+    needs:
+      - build
+
+    steps:
+      - name: remove running container
+        run: |
+          docker rm --force businessvtu
+
+      - name: Run Docker images
+        run: |
+          docker run -d -p 1700:4200 --name businessvtu businessvtu:${{ github.sha }}

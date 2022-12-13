@@ -1,102 +1,182 @@
 <p-menu #menu [popup]="true" [model]="items"></p-menu>
- <!-- alert -->
- <app-alert [alive]="alert.alive" [temporary]="alert.temporary" [severity]="alert.severity" [life]="alert.life" [message]="alert.message"></app-alert>
+<!-- alert -->
+<app-alert
+  [alive]="alert.alive"
+  [temporary]="alert.temporary"
+  [severity]="alert.severity"
+  [life]="alert.life"
+  [message]="alert.message"
+></app-alert>
 
-<header *ngIf="!isProfileHeader && !isBalanceHeader"  class="flex align-items-center justify-content-between pr-4 pl-4">
+<header *ngIf="!isProfileHeader && !isBalanceHeader" class="unauth-header">
+  <section>
+    <i *ngIf="canMoveBack" class="pi pi-chevron-left" (click)="moveBack()"></i>
+    <h3 class="fadein" (click)="navigate('')">{{ title }}</h3>
+  </section>
+
+  <section>
+    <a routerLink="/auth/login">sign in</a>
+    <a routerLink="/auth/signup">sign up</a>
+  </section>
+  <i
+    (click)="menu.toggle($event)"
+    class="pi pi-bars unauth-breadcrumb-menu"
+  ></i>
+</header>
+
+<header
+  *ngIf="isProfileHeader"
+  class="flex flex-column align-items-start justify-content-start w-full profile-header"
+>
+  <section
+    class="flex align-items-center justify-content-between pr-4 pl-4 mt-3 w-full"
+  >
     <section class="flex align-items-center">
-        <i *ngIf="canMoveBack" class="pi nav-icon pi-chevron-left pr-3 " (click)="moveBack()"></i>
-        <h3 class="fadein " (click)="navigate('')">{{title}}</h3>
+      <i
+        *ngIf="canMoveBack"
+        class="pi nav-icon pi-chevron-left pr-3"
+        (click)="moveBack()"
+      ></i>
+      <h3 class="fadein" (click)="navigate('')">{{ title }}</h3>
     </section>
 
     <section>
-        <i (click)="menu.toggle($event)" class="pi pi-bars  options-icon"></i>
+      <i (click)="menu.toggle($event)" class="pi pi-bars options-icon"></i>
     </section>
-    
+  </section>
+
+  <section class="user-detail w-full mt-5">
+    <section
+      class="flex align-items-center flex-column justify-content-center w-full mt-5"
+    >
+      <p-avatar
+        label="{{ iconLabel }}"
+        size="xlarge"
+        shape="circle"
+        [style]="{ color: '#E96B3C' }"
+      ></p-avatar>
+      <p class="username mt-2">{{ fullname }}</p>
+    </section>
+    <section
+      class="flex balance-board shadow-2 align-items-center justify-content-between mt-4 mb-3"
+    >
+      <section class="flex align-items-start justify-content-start p-3">
+        <p class="title">Wallet Balance</p>
+        <p class="amount ml-2">N{{ balance }}</p>
+      </section>
+      <button
+        (click)="navigate('dashboard/fund-wallet')"
+        class="cee-general-btn-style-preset fund-wallet-btn shadow-2"
+      >
+        Fund wallet
+      </button>
+    </section>
+    <section
+      *ngIf="isAdmin"
+      class="flex align-items-center justify-content-between mb-2"
+    >
+      <section
+        class="flex flex-column flex-grow-1 balance-board shadow-2 p-2 shadow-2"
+      >
+        <p class="title">Dataway.ng Bal</p>
+        <p class="amount ml-2 mt-1">N{{ datawayngBalance }}</p>
+      </section>
+
+      <section
+        class="flex flex-column flex-grow-1 balance-board shadow-2 p-2 shadow-2"
+      >
+        <p class="title">Customers Bal</p>
+        <p class="amount ml-2 mt-1">N{{ customersBalance }}</p>
+      </section>
+    </section>
+
+    <section
+      *ngIf="isAdmin"
+      class="flex flex-column mb-2 balance-board shadow-2 p-2 shadow-2"
+    >
+      <section class="flex align-items-center justify-content-between">
+        <span class="flex">
+          <p class="title">Commission Bal</p>
+          <p class="amount ml-2">N{{ cee.account.commissionBal }}</p>
+        </span>
+
+        <span>
+          <i
+            *ngIf="shouldWithdrawCommission"
+            (click)="toggleShouldWithdrawCommission()"
+            class="pi pi-times commission-withdrawal-btn commission-withdrawal-icon"
+          ></i>
+          <button
+            (click)="toggleShouldWithdrawCommission()"
+            *ngIf="!shouldWithdrawCommission"
+            (click)="navigate('dashboard/fund-wallet')"
+            class="cee-general-btn-style-preset commission-withdrawal-btn shadow-2"
+          >
+            Withdraw
+          </button>
+        </span>
+      </section>
+
+      <!-- withdraw section -->
+      <section *ngIf="shouldWithdrawCommission" class="w-full flex flex-column">
+        <span class="p-float-label p-input-icon-right mt-5 w-full">
+          <p-inputNumber
+            [(ngModel)]="commissionAmountToWithdraw"
+            autoWidth="false"
+            [style]="{ width: '100%' }"
+            mode="currency"
+            currency="NGN"
+            class="p-inputtext-sm w-full"
+          ></p-inputNumber>
+          <label for="float-input">Amount</label>
+        </span>
+
+        <span class="align-self-end align-items-center justify-self-end flex">
+          <i
+            *ngIf="withdrawingCommission"
+            class="pi pi-spin pi-spinner mr-2"
+          ></i>
+          <button
+            (click)="withdrawCommission()"
+            class="cee-general-btn-style-preset align-self-end justify-self-end mt-2 no-mr commission-withdrawal-btn shadow-2"
+          >
+            Withdraw
+          </button>
+        </span>
+      </section>
+    </section>
+  </section>
 </header>
 
-<header *ngIf="isProfileHeader"  class="flex flex-column align-items-start justify-content-start w-full profile-header">
-    <section class="flex align-items-center justify-content-between pr-4 pl-4 mt-3 w-full">
-        <section class="flex align-items-center">
-            <i *ngIf="canMoveBack" class="pi nav-icon pi-chevron-left pr-3 " (click)="moveBack()"></i>
-            <h3 class="fadein " (click)="navigate('')">{{title}}</h3>
-        </section>
-    
-        <section>
-            <i (click)="menu.toggle($event)" class="pi pi-bars  options-icon"></i>
-        </section>
+<header
+  *ngIf="isBalanceHeader"
+  class="flex flex-column align-items-start justify-content-start w-full balance-header"
+>
+  <section
+    class="flex align-items-center justify-content-between pr-4 pl-4 mt-3 w-full"
+  >
+    <section class="flex align-items-center">
+      <i
+        *ngIf="canMoveBack"
+        class="pi nav-icon pi-chevron-left pr-3"
+        (click)="moveBack()"
+      ></i>
+      <h3 class="fadein" (click)="navigate('')">{{ title }}</h3>
     </section>
 
-    <section class="user-detail w-full mt-5">
-        <section class="flex align-items-center flex-column justify-content-center w-full mt-5">
-            <p-avatar label="{{iconLabel}}" size="xlarge" shape="circle" [style]="{color: '#E96B3C'}"></p-avatar>
-            <p class="username mt-2">{{fullname}}</p>
-        </section>
-        <section class="flex balance-board shadow-2 align-items-center justify-content-between mt-4 mb-3">
-            <section class="flex align-items-start justify-content-start p-3">
-                <p class="title">Wallet Balance</p>
-                <p class="amount ml-2">N{{balance}}</p>
-            </section>
-            <button (click)="navigate('dashboard/fund-wallet')" class="cee-general-btn-style-preset fund-wallet-btn shadow-2">Fund wallet</button>
-        </section>
-        <section *ngIf="isAdmin" class=" flex align-items-center justify-content-between mb-2">
-            <section class="flex flex-column flex-grow-1 balance-board shadow-2 p-2 shadow-2">
-                <p class="title">Dataway.ng Bal</p>
-                <p class="amount ml-2 mt-1">N{{datawayngBalance}}</p>
-            </section>
-
-            <section class="flex flex-column flex-grow-1 balance-board shadow-2 p-2 shadow-2">
-                <p class="title">Customers Bal</p>
-                <p class="amount ml-2 mt-1">N{{customersBalance}}</p>
-            </section>
-        </section>
-        
-        <section *ngIf="isAdmin" class="flex flex-column mb-2 balance-board shadow-2 p-2 shadow-2">
-            <section class="flex align-items-center justify-content-between">
-                <span class="flex">
-                    <p class="title ">Commission Bal</p>
-                    <p class="amount ml-2">N{{cee.account.commissionBal}}</p>
-                </span>
-    
-                <span>
-                    <i *ngIf="shouldWithdrawCommission" (click)="toggleShouldWithdrawCommission()" class="pi pi-times commission-withdrawal-btn commission-withdrawal-icon"></i>
-                    <button (click)="toggleShouldWithdrawCommission()" *ngIf="!shouldWithdrawCommission" (click)="navigate('dashboard/fund-wallet')" class="cee-general-btn-style-preset commission-withdrawal-btn shadow-2">Withdraw</button>
-                </span>
-            </section>
-
-            <!-- withdraw section -->
-            <section *ngIf="shouldWithdrawCommission" class="w-full flex flex-column">
-                <span class="p-float-label p-input-icon-right mt-5 w-full ">
-                    <p-inputNumber [(ngModel)]="commissionAmountToWithdraw" autoWidth="false" [style]="{'width':'100%'}" mode="currency" currency="NGN" class="p-inputtext-sm w-full"></p-inputNumber>
-                    <label for="float-input">Amount</label>
-                </span>
-
-                <span class="align-self-end align-items-center justify-self-end flex">
-                    <i *ngIf="withdrawingCommission" class="pi pi-spin pi-spinner mr-2"></i>
-                    <button (click)="withdrawCommission()" class="cee-general-btn-style-preset align-self-end justify-self-end mt-2 no-mr commission-withdrawal-btn shadow-2">Withdraw</button>
-                </span>
-            </section>
-        </section>
+    <section>
+      <i (click)="menu.toggle($event)" class="pi pi-bars options-icon"></i>
     </section>
-    
-</header>
+  </section>
 
-<header *ngIf="isBalanceHeader"  class="flex flex-column align-items-start justify-content-start w-full balance-header">
-    <section class="flex align-items-center justify-content-between pr-4 pl-4 mt-3 w-full">
-        <section class="flex align-items-center">
-            <i *ngIf="canMoveBack" class="pi nav-icon pi-chevron-left pr-3 " (click)="moveBack()"></i>
-            <h3 class="fadein " (click)="navigate('')">{{title}}</h3>
-        </section>
-    
-        <section>
-            <i (click)="menu.toggle($event)" class="pi pi-bars  options-icon"></i>
-        </section>
+  <section
+    class="balance-board w-full mt-5 flex align-items-end justify-content-end"
+  >
+    <section
+      class="wallet-balance-details flex align-items-start justify-content-start p-3 pt-0"
+    >
+      <p class="title">Wallet Balance</p>
+      <p class="amount ml-2 mr-2">N{{ balance }}</p>
     </section>
-
-    <section class="balance-board w-full mt-5 flex align-items-end justify-content-end">
-        <section class="wallet-balance-details flex align-items-start justify-content-start p-3 pt-0">
-            <p class="title">Wallet Balance</p>
-            <p class="amount ml-2 mr-2">N{{balance}}</p>
-        </section>
-    </section>
-    
+  </section>
 </header>
