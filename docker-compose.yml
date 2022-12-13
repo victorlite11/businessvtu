@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ${PWD}/.docker/Dockerfile
+      target: base
+    ports:
+      - 3000:4200
+    volumes:
+      - .:/app/
+    command: yarn start --host 0.0.0.0
