@@ -14,7 +14,7 @@ jobs:
 
       - name: Build Docker images
         run: |
-          docker build . -f './.docker/prod/' -t businessvtu:${{ github.sha }}
+          docker build . -f './.docker/prod/Dockerfile' -t businessvtu:${{ github.sha }}
 
   run:
     runs-on: self-hosted
