@@ -1,13 +1,31 @@
 <section class="keep-in-touch-board flex flex-column">
-    <p class="title fadein animation-duration-2000 animation-iteration-1">- KEEP IN TOUCH -</p>
-    <p class="subtitle fadein animation-duration-2000 animation-iteration-1">Contact Us:</p>
-    <p class="into fadein animation-duration-2000 animation-iteration-1">Please, contact us using the provided information if you have any requests or complaints.</p>
+  <p class="title fadein animation-duration-2000 animation-iteration-1">
+    - KEEP IN TOUCH -
+  </p>
+  <p class="subtitle fadein animation-duration-2000 animation-iteration-1">
+    Contact Us:
+  </p>
+  <p class="into fadein animation-duration-2000 animation-iteration-1">
+    Please, contact us using the provided information if you have any requests
+    or complaints.
+  </p>
 
-    <section *ngFor="let contact of contacts" class="info flex align-items-center">
-        <i class="pi pi-{{contact.icon}} contact-info-icon fadein animation-duration-2000 animation-iteration-1"></i>
-        <section class="contact flex flex-column justify-content-center">
-            <p class="name fadein animation-duration-2000 animation-iteration-1">{{contact.name}}</p>
-            <p class="detail fadein animation-duration-2000 animation-iteration-1">{{contact.detail}}</p>
-        </section>
+  <section
+    *ngFor="let contact of contacts"
+    class="info flex align-items-center"
+  >
+    <i
+      class="pi pi-{{
+        contact.icon
+      }} contact-info-icon fadein animation-duration-2000 animation-iteration-1"
+    ></i>
+    <section class="contact flex flex-column justify-content-center">
+      <p class="name fadein animation-duration-2000 animation-iteration-1">
+        {{ contact.name }}
+      </p>
+      <p class="detail fadein animation-duration-2000 animation-iteration-1">
+        {{ contact.detail }}
+      </p>
     </section>
+  </section>
 </section>
