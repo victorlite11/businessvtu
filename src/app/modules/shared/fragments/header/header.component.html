@@ -8,22 +8,20 @@
   [message]="alert.message"
 ></app-alert>
 
-<header
-  *ngIf="!isProfileHeader && !isBalanceHeader"
-  class="flex align-items-center justify-content-between pr-4 pl-4"
->
-  <section class="">
-    <i
-      *ngIf="canMoveBack"
-      class="pi nav-icon pi-chevron-left pr-3"
-      (click)="moveBack()"
-    ></i>
+<header *ngIf="!isProfileHeader && !isBalanceHeader" class="unauth-header">
+  <section>
+    <i *ngIf="canMoveBack" class="pi pi-chevron-left" (click)="moveBack()"></i>
     <h3 class="fadein" (click)="navigate('')">{{ title }}</h3>
   </section>
 
   <section>
-    <i (click)="menu.toggle($event)" class="pi pi-bars options-icon"></i>
+    <a routerLink="/auth/login">sign in</a>
+    <a routerLink="/auth/signup">sign up</a>
   </section>
+  <i
+    (click)="menu.toggle($event)"
+    class="pi pi-bars unauth-breadcrumb-menu"
+  ></i>
 </header>
 
 <header
